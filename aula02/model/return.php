@@ -1,33 +1,31 @@
 <?php
 
     $nome = $_REQUEST['nome'];
-    $nasc = $_REQUEST['nasc'];
+    $datanasc = $_REQUEST['datanasc'];
     $bebida = $_REQUEST['bebida'];
-
-    $date1 = new DateTime('now');
-    $date2 = new DateTime($nasc);
-
-    $i = $date1 -> diff($date2);
+    $dataAtual = new DateTime('now');
+    $dateAtt = new DateTime($datanasc);
+    $datas = $dataAtual -> diff($dataAtt);
     
     if(empty($nome)){
         
         $dados = array(
             "tipo" => 'error',
-            "mensagem" => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
+            "mensagem" => 'Campos obrigatórios não foram preenchidos.'
         );
         
     } else {
 
-        if($i->y < 18) {
+        if($datas->y < 18) {
             $dados = array(
 
-                "mensagem" => 'Olá, '.$nome.', sua bebida favorita é '.$bebida.' ,portanto, ainda não pode ingerir bebida alcoólica.'
+                "mensagem" => 'Seu nome é: '.$nome.', sua bebida favorita é '.$bebida.' ,portanto, ainda não pode ingerir bebida alcoólica.'
 
             );
         }
         else {
             $dados = array(
-                "mensagem" => 'Olá, '.$nome.', sua bebida favorita é '.$bebida.' e você já pode ingerir bebida alcoólica.' 
+                "mensagem" => 'Seu nome é: '.$nome.', sua bebida favorita é '.$bebida.' e você já pode ingerir bebida alcoólica.' 
             );
         }
 
@@ -35,3 +33,4 @@
     
 
     echo json_encode($dados);
+
