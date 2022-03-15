@@ -5,7 +5,7 @@
     $bebida = $_REQUEST['bebida'];
     $dataAtual = new DateTime('now');
     $dateAtt = new DateTime($datanasc);
-    $datas = $dataAtual -> diff($dataAtt);
+    $datas = $dataAtual -> diff($dateAtt);
     
     if(empty($nome)){
         
